@@ -331,7 +331,8 @@ platform :ios do
         type: "adhoc",
         app_identifier: "org.mifos.kmp.template",
         readonly: true, # Use readonly mode to avoid creating new profiles on CI
-        git_basic_authorization: ios_config[:git_basic_authorization]
+        git_basic_authorization: ios_config[:git_basic_authorization],
+        keychain_password: ios_config[:keychain_password]
     )
 
     build_ios_app(
