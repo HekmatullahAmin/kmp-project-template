@@ -10,7 +10,6 @@ module FastlaneConfig
       project_path: "cmp-ios/iosApp.xcodeproj",
       scheme: "iosApp",
       output_directory: "cmp-ios/build",
-#       git_basic_authorization: "SGVrbWF0dWxsYWhBbWluOmdocF9lMkNKUm12WXVjM1VuTmhHSjY1cml3UUhOa1hoV1YwZWM5NDE="
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"]
     }
   end
