@@ -9,7 +9,8 @@ module FastlaneConfig
     BUILD_CONFIG = {
       project_path: "cmp-ios/iosApp.xcodeproj",
       scheme: "iosApp",
-      output_directory: "cmp-ios/build"
+      output_directory: "cmp-ios/build",
+      git_basic_authorization: "SGVrbWF0dWxsYWhBbWluOmdocF9lMkNKUm12WXVjM1VuTmhHSjY1cml3UUhOa1hoV1YwZWM5NDE="
     }
   end
 end
