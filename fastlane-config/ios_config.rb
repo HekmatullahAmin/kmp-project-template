@@ -11,6 +11,7 @@ module FastlaneConfig
       scheme: "iosApp",
       output_directory: "cmp-ios/build",
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      keychain_name: "ci-signing.keychain",
       keychain_password: ENV["KEYCHAIN_PASSWORD"]
     }
   end
