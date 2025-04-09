@@ -83,9 +83,7 @@ permissions:
 jobs:
   pr_checks:
     name: PR Checks
-#    uses: openMF/mifos-mobile-github-actions/.github/workflows/pr-check.yaml@main
     uses: HekmatullahAmin/fastlane-mifos-mobile-github-actions/.github/workflows/pr-check.yml@master
-#    secrets: inherit
     with:
       android_package_name: 'cmp-android' # <-- Change Your Android Package Name
       desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
@@ -93,5 +91,5 @@ jobs:
       ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
       build_ios: true # <-- Change to 'false' if you don't want to build iOS
     secrets:
-      match_git_basic_authorization: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-      match_password: ${{ secrets.MATCH_PASSWORD }}
+      MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
