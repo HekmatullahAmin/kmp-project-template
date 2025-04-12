@@ -90,7 +90,7 @@ jobs:
       web_package_name: 'cmp-web' # <-- Change Your Web Package Name
       ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
       build_ios: true # <-- Change to 'false' if you don't want to build iOS
-    secrets:
+#    secrets:
       MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
       KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
