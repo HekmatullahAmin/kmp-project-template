@@ -94,6 +94,7 @@ jobs:
       match_type: 'adhoc'
       export_method: 'ad-hoc'
       app_identifier: 'org.mifos.kmp.template'
+      provisioning_profile_name: 'match AdHoc org.mifos.kmp.template'
     secrets:
       MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
