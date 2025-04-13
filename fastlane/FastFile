@@ -372,7 +372,7 @@ platform :ios do
         }
     )
 
-    delete_keychain(name: ios_config[:keychain_name])
+#     delete_keychain(name: ios_config[:keychain_name])
   end
 
   lane :increment_version do |options|
