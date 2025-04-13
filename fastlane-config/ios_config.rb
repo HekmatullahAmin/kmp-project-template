@@ -17,7 +17,8 @@ module FastlaneConfig
       keychain_password: "someCustomKeychainPassword",
       match_type: "adhoc",
       app_identifier: "org.mifos.kmp.template",
-      export_method: "ad-hoc"
+      export_method: "ad-hoc",
+      provisioning_profile_name: "match AdHoc org.mifos.kmp.template"
     }
   end
 end
