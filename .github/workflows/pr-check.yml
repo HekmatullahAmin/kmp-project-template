@@ -91,6 +91,9 @@ jobs:
       ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
       build_ios: true # <-- Change to 'false' if you don't want to build iOS
       keychain_name: 'ci-signing.keychain' # <-- Change to your keychain name
+      match_type: 'adhoc'
+      export_method: 'ad-hoc'
+      app_identifier: 'org.mifos.kmp.template'
     secrets:
       MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
