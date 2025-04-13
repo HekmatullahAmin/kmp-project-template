@@ -336,7 +336,8 @@ platform :ios do
         password: ios_config[:keychain_password],
         default_keychain: true,
         unlock: true,
-        timeout: 3600
+        timeout: 3600,
+        add_to_search_list: true
     )
 
   # Use match to fetch the provisioning profile and certificate
