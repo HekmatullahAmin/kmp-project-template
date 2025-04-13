@@ -333,11 +333,11 @@ platform :ios do
     keychain_name = options[:keychain_name] || ENV['KEYCHAIN_NAME'] || ios_config[:keychain_name]
     keychain_password = options[:keychain_password] || ENV['KEYCHAIN_PASSWORD'] || ios_config[:keychain_password]
     export_method = options[:export_method] || ENV['EXPORT_METHOD'] || ios_config[:export_method]
-    app_identifier = options[:app_identifier] || ENV['APP_IDENTIFIER'] || ios_config[:app_identifier]
+#     app_identifier = options[:app_identifier] || ENV['APP_IDENTIFIER'] || ios_config[:app_identifier]
+    app_identifier = options[:app_identifier] || ENV['APP_IDENTIFIER']
 
     create_keychain(
         name: keychain_name,
-#         password: ios_config[:keychain_password],
         password: keychain_password,
         default_keychain: true,
         unlock: true,
@@ -379,8 +379,6 @@ platform :ios do
           }
         }
     )
-
-#     delete_keychain(name: ios_config[:keychain_name])
   end
 
   lane :increment_version do |options|
