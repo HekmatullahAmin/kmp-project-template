@@ -332,7 +332,7 @@ platform :ios do
     keychain_password = options[:keychain_password] || ENV['KEYCHAIN_PASSWORD'] || ios_config[:keychain_password]
 
     create_keychain(
-        name: ios_config[:keychain_name],
+#         name: ios_config[:keychain_name],
 #         password: ios_config[:keychain_password],
         password: keychain_password,
         default_keychain: true,
@@ -349,7 +349,7 @@ platform :ios do
         app_identifier: ios_config[:app_identifier],
         readonly: true, # Use readonly mode to avoid creating new profiles on CI
         git_basic_authorization: match_git_basic_authorization,
-        keychain_name: ios_config[:keychain_name],
+#         keychain_name: ios_config[:keychain_name],
         keychain_password: keychain_password
     )
 
