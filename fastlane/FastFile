@@ -327,9 +327,9 @@ platform :ios do
 
     # Set default configuration if not provided
     options[:configuration] ||= "Debug"
-    match_git_basic_authorization = options[:match_git_basic_authorization] || ios_config[:match_git_basic_authorization] || ENV["MATCH_GIT_BASIC_AUTHORIZATION"]
-    match_password = options[:match_password] || ios_config[:match_password] || ENV["MATCH_PASSWORD"]
-    keychain_password = options[:keychain_password] || ios_config[:keychain_password] || ENV["KEYCHAIN_PASSWORD"]
+    match_git_basic_authorization = options[:match_git_basic_authorization] || ENV["MATCH_GIT_BASIC_AUTHORIZATION"] || ios_config[:match_git_basic_authorization]
+    match_password = options[:match_password] || ENV["MATCH_PASSWORD"] || ios_config[:match_password]
+    keychain_password = options[:keychain_password] || ENV["KEYCHAIN_PASSWORD"] || ios_config[:keychain_password]
 
     create_keychain(
         name: ios_config[:keychain_name],
@@ -370,6 +370,8 @@ platform :ios do
           }
         }
     )
+
+    delete_keychain(name: ios_config[:keychain_name])
   end
 
   lane :increment_version do |options|
