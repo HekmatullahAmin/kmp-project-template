@@ -352,7 +352,10 @@ platform :ios do
         readonly: true, # Use readonly mode to avoid creating new profiles on CI
         git_basic_authorization: match_git_basic_authorization,
         keychain_name: keychain_name,
-        keychain_password: keychain_password
+        keychain_password: keychain_password,
+        git_url: ios_config[:git_url],
+        username: ios_config[:username],
+        storage_mode: ios_config[:storage_mode]
     )
 
     build_ios_app(

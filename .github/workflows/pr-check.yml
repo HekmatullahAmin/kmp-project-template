@@ -83,7 +83,7 @@ permissions:
 jobs:
   pr_checks:
     name: PR Checks
-    uses: HekmatullahAmin/fastlane-mifos-mobile-github-actions/.github/workflows/pr-check.yml@master
+    uses: openMF/mifos-x-actionhub/.github/workflows/pr-check.yml@master
     with:
       android_package_name: 'cmp-android' # <-- Change Your Android Package Name
       desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
