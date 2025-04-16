@@ -85,7 +85,7 @@ jobs:
     name: PR Checks
     uses: openMF/mifos-x-actionhub/.github/workflows/pr-check.yaml@main
     with:
-      android_package_name: 'cmp-android' # <-- Change Your Android Package Nam
+      android_package_name: 'cmp-android' # <-- Change Your Android Package Name
       desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
       web_package_name: 'cmp-web' # <-- Change Your Web Package Name
       ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
