@@ -68,9 +68,9 @@ name: PR Checks
 on:
   workflow_dispatch:
   push:
-    branches: [ test-firebase ]  # Runs on pushes to dev branch
+    branches: [ test-firebase ]  # Runs on pushes to
   pull_request:
-    branches: [ test-firebase ]  # Runs on pushes to dev branch
+    branches: [ test-firebase ]  # Runs on pushes to
 
 # Concurrency settings to prevent multiple simultaneous workflow runs
 concurrency:
