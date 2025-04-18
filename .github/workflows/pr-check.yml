@@ -78,7 +78,7 @@ concurrency:
   cancel-in-progress: true  # Cancels previous runs if a new one is triggered
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   pr_checks:
