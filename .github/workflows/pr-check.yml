@@ -68,9 +68,9 @@ name: PR Checks
 on:
   workflow_dispatch:
   push:
-    branches: [ dev ]  # Runs on pushes to dev branch
-  pull_request:
-    branches: [ dev ]  # Runs on pushes to dev branch
+    branches: [ test-firebase ]  # Runs on pushes to dev branch
+  pull_request_target:
+    branches: [ test-firebase ]  # Runs on pushes to dev branch
 
 # Concurrency settings to prevent multiple simultaneous workflow runs
 concurrency:
@@ -78,7 +78,7 @@ concurrency:
   cancel-in-progress: true  # Cancels previous runs if a new one is triggered
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   pr_checks:
