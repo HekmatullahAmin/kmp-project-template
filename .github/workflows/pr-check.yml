@@ -64,18 +64,16 @@
 
 name: PR Checks
 
-# Trigger conditions for the workflow
 on:
   workflow_dispatch:
   push:
-    branches: [ test-firebase ]  # Runs on pushes to dev branch
+    branches: [ test-firebase ]
   pull_request:
-    branches: [ test-firebase ]  # Runs on pushes to dev branch
+    branches: [ test-firebase ]
 
-# Concurrency settings to prevent multiple simultaneous workflow runs
 concurrency:
   group: pr-${{ github.ref }}
-  cancel-in-progress: true  # Cancels previous runs if a new one is triggered
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -83,19 +81,48 @@ permissions:
 jobs:
   pr_checks:
     name: PR Checks
-    uses: HekmatullahAmin/mifos-x-actionhub-build-ios-app@test
-    with:
-      android_package_name: 'cmp-android' # <-- Change Your Android Package Name
-      desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
-      web_package_name: 'cmp-web' # <-- Change Your Web Package Name
-      ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
-      build_ios: true # <-- Change to 'false' if you don't want to build iOS
-      keychain_name: 'ci-signing.keychain'
-      match_type: 'adhoc'
-      export_method: 'ad-hoc'
-      app_identifier: 'org.mifos.kmp.template'
-      provisioning_profile_name: 'match AdHoc org.mifos.kmp.template'
-    secrets:
-      MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-      KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install Fastlane and plugins
+        run: |
+          gem install bundler:2.2.27
+          bundle install --jobs 4 --retry 3
+          bundle exec fastlane add_plugin firebase_app_distribution
+          bundle exec fastlane add_plugin increment_build_number
+
+      - name: Build iOS App
+        env:
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          KEYCHAIN_NAME: ci-signing.keychain
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          MATCH_TYPE: adhoc
+          EXPORT_METHOD: ad-hoc
+          APP_IDENTIFIER: org.mifos.kmp.template
+          PROVISIONING_PROFILE_NAME: match AdHoc org.mifos.kmp.template
+        run: |
+          bundle exec fastlane ios build_ios \
+            match_git_basic_authorization:${{ env.MATCH_GIT_BASIC_AUTHORIZATION }} \
+            match_password:${{ env.MATCH_PASSWORD }} \
+            match_type:${{ env.MATCH_TYPE }} \
+            keychain_name:${{ env.KEYCHAIN_NAME }} \
+            keychain_password:${{ env.KEYCHAIN_PASSWORD }} \
+            export_method:${{ env.EXPORT_METHOD }} \
+            app_identifier:${{ env.APP_IDENTIFIER }} \
+            provisioning_profile_name:${{ env.PROVISIONING_PROFILE_NAME }}
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-app
+          path: '**/*.ipa'
+          retention-days: 1
