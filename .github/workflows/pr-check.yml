@@ -83,7 +83,7 @@ permissions:
 jobs:
   pr_checks:
     name: PR Checks
-    uses: HekmatullahAmin/kmp-project-template/.github/workflows/action.yaml@test-firebase
+    uses: HekmatullahAmin/mifos-x-actionhub-build-ios-app@test
     with:
       android_package_name: 'cmp-android' # <-- Change Your Android Package Name
       desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
