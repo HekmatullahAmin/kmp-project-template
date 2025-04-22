@@ -435,8 +435,13 @@ platform :ios do
 
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
+      setup_ci_if_needed
+      load_api_key(options)
+      fetch_certificates_with_match(
+        options.merge(match_type: "appstore")
+      )
+
       latest_build_number = latest_testflight_build_number(
-#         username: options[:username] || ios_config[:username],
         app_identifier: options[:app_identifier] || ios_config[:app_identifier],
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
       )
@@ -446,9 +451,7 @@ platform :ios do
         build_number: latest_build_number + 1
       )
 
-      build_ios(
-        match_type: "appstore"
-      )
+      build_ios_project
 
       pilot(
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
