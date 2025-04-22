@@ -22,8 +22,8 @@ module FastlaneConfig
       git_url: "https://github.com/openMF/ios-provisioning-profile",
       git_branch: "master",
       username: "hekmatullah.amin@icloud.com",
-      key_id: "HA469T9321",
-      issuer_id: "8cd9e361-9603-6r3e-b147-be3b0f829199",
+      key_id: "HA469T6757",
+      issuer_id: "8er9e361-9603-4c3e-b147-be3b1o816099",
       key_filepath: "./secrets/AuthKey.p8"
     }
   end
