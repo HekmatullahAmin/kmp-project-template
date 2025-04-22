@@ -337,13 +337,14 @@ platform :ios do
   private_lane :load_api_key do |options|
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
-      api_key = app_store_connect_api_key(
+#       api_key = app_store_connect_api_key(
+      app_store_connect_api_key(
         key_id: options[:appstore_key_id] || ios_config[:key_id],
         issuer_id: options[:appstore_issuer_id] || ios_config[:issuer_id],
         key_filepath: options[:key_filepath] || ios_config[:key_filepath]
       )
 
-      Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY] = api_key
+#       Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY] = api_key
   end
 
   private_lane :fetch_certificates_with_match do |options|
