@@ -360,14 +360,20 @@ platform :ios do
       )
   end
 
-  private_lane :build_ios_project do
+  private_lane :build_ios_project do |options|
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
-
+      app_identifier = options[:app_identifier] || ios_config[:app_identifier]
+      provisioning_profile_name = options[:provisioning_profile_name] || ios_config[:provisioning_profile_name]
       build_ios_app(
         scheme: ios_config[:scheme],
         project: ios_config[:project_path],
         output_name: ios_config[:output_name],
-        output_directory: ios_config[:output_directory]
+        output_directory: ios_config[:output_directory],
+        export_options: {
+            provisioningProfiles: {
+                app_identifier => provisioning_profile_name
+            }
+        }
       )
   end
 
@@ -380,7 +386,7 @@ platform :ios do
       setup_ci_if_needed
       load_api_key(options)
       fetch_certificates_with_match(options)
-      build_ios_project
+      build_ios_project(options)
   end
 
   desc "Increment build number from latest Firebase release"
@@ -419,7 +425,10 @@ platform :ios do
     increment_version(serviceCredsFile: firebase_config[:serviceCredsFile])
 
     build_ios(
-        match_type: "adhoc"
+        options.merge(
+            match_type: "adhoc",
+            provisioning_profile_name: "match AdHoc org.mifos.kmp.template"
+        )
     )
 
     releaseNotes = generateReleaseNote()
@@ -453,7 +462,11 @@ platform :ios do
         build_number: latest_build_number + 1
       )
 
-      build_ios_project
+      build_ios_project(
+        options.merge(
+            provisioning_profile_name: "match AppStore org.mifos.kmp.template"
+        )
+      )
 
       pilot(
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
