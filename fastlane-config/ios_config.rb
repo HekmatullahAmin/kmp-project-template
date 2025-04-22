@@ -24,7 +24,7 @@ module FastlaneConfig
       username: "hekmatullah.amin@icloud.com",
       key_id: "HA469T6757",
       issuer_id: "8er9e361-9603-4c3e-b147-be3b1o816099",
-      key_filepath: "./secrets/AuthKey.p8"
+      key_filepath: "./secrets/Auth_Key.p8"
     }
   end
 end
