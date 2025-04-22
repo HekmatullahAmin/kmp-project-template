@@ -369,11 +369,17 @@ platform :ios do
         project: ios_config[:project_path],
         output_name: ios_config[:output_name],
         output_directory: ios_config[:output_directory],
-        export_method: "app-store",
+#         export_method: "app-store",
         export_options: {
             provisioningProfiles: {
                 app_identifier => provisioning_profile_name
             }
+        },
+        build_settings: {
+          "CODE_SIGN_STYLE" => "Manual",
+          "CODE_SIGN_IDENTITY" => "Apple Distribution",
+          "DEVELOPMENT_TEAM" => "L432S2FZP5",
+          "PROVISIONING_PROFILE_SPECIFIER" => "match AppStore org.mifos.kmp.template"
         }
       )
   end
