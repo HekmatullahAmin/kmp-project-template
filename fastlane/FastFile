@@ -436,32 +436,14 @@ platform :ios do
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
       setup_ci_if_needed
-#       load_api_key(options)
-      api_key = app_store_connect_api_key(
-              key_id: options[:appstore_key_id] || ios_config[:key_id],
-              issuer_id: options[:appstore_issuer_id] || ios_config[:issuer_id],
-              key_filepath: options[:key_filepath] || ios_config[:key_filepath]
-      )
-#       fetch_certificates_with_match(
-#         options.merge(match_type: "appstore")
-#       )
-
-      match_password = options[:match_password] || ios_config[:match_password]
-      match(
-        type: options[:match_type] || ios_config[:match_type],
-        app_identifier: options[:app_identifier] || ios_config[:app_identifier],
-        readonly: true,
-        git_url: options[:git_url] || ios_config[:git_url],
-        git_branch: options[:git_branch] || ios_config[:git_branch],
-        git_basic_authorization: options[:match_git_basic_authorization] || ios_config[:match_git_basic_authorization],
-#         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
-        api_key: api_key
+      load_api_key(options)
+      fetch_certificates_with_match(
+        options.merge(match_type: "appstore")
       )
 
       latest_build_number = latest_testflight_build_number(
         app_identifier: options[:app_identifier] || ios_config[:app_identifier],
-#         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
-        api_key: api_key
+        api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
       )
 
       increment_build_number(
@@ -472,8 +454,7 @@ platform :ios do
       build_ios_project
 
       pilot(
-#         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
-        api_key: api_key,
+        api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
         skip_waiting_for_build_processing: true
       )
   end
