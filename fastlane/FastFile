@@ -423,7 +423,6 @@ platform :ios do
   desc "Upload iOS application to Firebase App Distribution"
   lane :deploy_on_firebase do |options|
     firebase_config = FastlaneConfig.get_firebase_config(:ios)
-    ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
 #     key_id: "HA469T6757",
 #           issuer_id: "8er9e361-9603-4c3e-b147-be3b1o816099",
