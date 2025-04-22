@@ -439,7 +439,8 @@ platform :ios do
         readonly: true,
         git_url: options[:git_url] || ios_config[:git_url],
         git_branch: options[:git_branch] || ios_config[:git_branch],
-        git_basic_authorization: options[:match_git_basic_authorization] || ios_config[:match_git_basic_authorization]
+        git_basic_authorization: options[:match_git_basic_authorization] || ios_config[:match_git_basic_authorization],
+        username: ios_config[:username]
       )
 
     increment_version(serviceCredsFile: firebase_config[:serviceCredsFile])
