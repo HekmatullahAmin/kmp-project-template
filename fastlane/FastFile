@@ -427,9 +427,19 @@ platform :ios do
 #     key_id: "HA469T6757",
 #           issuer_id: "8er9e361-9603-4c3e-b147-be3b1o816099",
     setup_ci_if_needed
-    fetch_certificates_with_match(
-        options.merge(match_type: "adhoc")
-    )
+#     fetch_certificates_with_match(
+#         options.merge(match_type: "adhoc")
+#     )
+      match_password = options[:match_password] || ios_config[:match_password]
+      match_options = options.merge(match_type: "adhoc") || ios_config[:match_type]
+      match(
+        type: match_options[:match_type],
+        app_identifier: options[:app_identifier] || ios_config[:app_identifier],
+        readonly: true,
+        git_url: options[:git_url] || ios_config[:git_url],
+        git_branch: options[:git_branch] || ios_config[:git_branch],
+        git_basic_authorization: options[:match_git_basic_authorization] || ios_config[:match_git_basic_authorization]
+      )
 
     increment_version(serviceCredsFile: firebase_config[:serviceCredsFile])
 
