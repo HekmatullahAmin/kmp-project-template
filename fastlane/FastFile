@@ -436,7 +436,7 @@ platform :ios do
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
       latest_build_number = latest_testflight_build_number(
-        username: options[:username] || ios_config[:username],
+#         username: options[:username] || ios_config[:username],
         app_identifier: options[:app_identifier] || ios_config[:app_identifier],
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
       )

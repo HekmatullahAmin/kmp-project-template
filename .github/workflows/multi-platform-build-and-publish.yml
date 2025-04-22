@@ -105,7 +105,7 @@ jobs:
       desktop_package_name: 'cmp-desktop' # <-- Change this to your desktop package name
       web_package_name: 'cmp-web'   # <-- Change this to your web package name
       tester_groups: 'mobile-wallet-testing' # <-- Change this to your Firebase tester group
-      username: 'hekmatullah.amin@icloud.com'
+#      username: 'hekmatullah.amin@icloud.com'
       app_identifier: 'org.mifos.kmp.template'
       git_url: 'https://github.com/openMF/ios-provisioning-profile'
       git_branch: 'master'
