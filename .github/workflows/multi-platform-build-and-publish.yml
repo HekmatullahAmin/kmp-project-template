@@ -106,7 +106,8 @@ jobs:
       web_package_name: 'cmp-web'   # <-- Change this to your web package name
       tester_groups: 'mobile-wallet-testing' # <-- Change this to your Firebase tester group
       app_identifier: 'org.mifos.kmp.template'
-      git_url: 'https://github.com/openMF/ios-provisioning-profile'
+#      git_url: 'https://github.com/openMF/ios-provisioning-profile'
+      git_url: 'git@github.com:openMF/ios-provisioning-profile.git'
       git_branch: 'master'
       match_type: 'adhoc'
       provisioning_profile_name: 'match AdHoc org.mifos.kmp.template'
@@ -130,6 +131,7 @@ jobs:
       appstore_issuer_id: ${{ secrets.APPSTORE_ISSUER_ID }}
       appstore_auth_key: ${{ secrets.APPSTORE_AUTH_KEY }}
       match_password: ${{ secrets.MATCH_PASSWORD }}
+      match_ssh_private_key: ${{ secrets.MATCH_SSH_PRIVATE_KEY }}
       match_git_basic_authorization: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
 
       windows_signing_key: ${{ secrets.WINDOWS_SIGNING_KEY }}
