@@ -446,9 +446,9 @@ platform :ios do
 
     firebase_app_distribution(
       app: firebase_config[:appId],
-      service_credentials_file: firebase_config[:serviceCredsFile],
+      service_credentials_file: options[:serviceCredsFile] || firebase_config[:serviceCredsFile],
       release_notes: releaseNotes,
-      groups: firebase_config[:groups]
+      groups: options[:groups] || firebase_config[:groups]
     )
   end
 
