@@ -11,7 +11,7 @@ module FastlaneConfig
       scheme: "iosApp",
       output_name: "iosApp.ipa",
       output_directory: "cmp-ios/build",
-      match_git_private_key: "./secrets/match_ci_key.save",
+      match_git_private_key: "./secrets/match_ci_key",
       match_type: "adhoc",
       app_identifier: "org.mifos.kmp.template",
       provisioning_profile_name: "match AdHoc org.mifos.kmp.template",

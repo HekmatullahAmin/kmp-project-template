@@ -110,6 +110,7 @@ jobs:
       git_branch: 'master'
       match_type: 'adhoc'
       provisioning_profile_name: 'match AdHoc org.mifos.kmp.template'
+      firebase_app_id: '1:728434912738:ios:1d81f8e53ca7a6f31a1dbb'
       build_ios: ${{ inputs.build_ios }}
       publish_ios: ${{ inputs.publish_ios }}
     secrets:
