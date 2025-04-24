@@ -359,9 +359,7 @@ platform :ios do
   private_lane :build_ios_project do |options|
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
       app_identifier = options[:app_identifier] || ios_config[:app_identifier]
-#       provisioning_profile_name = options[:provisioning_profile_name] || ios_config[:provisioning_profile_name]
-      provisioning_profile_name = ENV['PROVISIONING_PROFILE_NAME']
-      UI.message(" Using Provisioning Profile: #{provisioning_profile_name}")
+      provisioning_profile_name = options[:provisioning_profile_name] || ios_config[:provisioning_profile_name]
 
       build_ios_app(
         scheme: ios_config[:scheme],
