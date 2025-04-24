@@ -360,6 +360,8 @@ platform :ios do
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
       app_identifier = options[:app_identifier] || ios_config[:app_identifier]
       provisioning_profile_name = options[:provisioning_profile_name] || ios_config[:provisioning_profile_name]
+      UI.message(" Using Provisioning Profile: #{provisioning_profile_name}")
+
       build_ios_app(
         scheme: ios_config[:scheme],
         project: ios_config[:project_path],
