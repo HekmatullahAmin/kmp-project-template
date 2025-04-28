@@ -1,1 +1,1 @@
-
+This app serves as a generator and base template for building scalable Kotlin Multiplatform applications. No login or demo account is required to experience the core functionality.
