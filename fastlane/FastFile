@@ -340,8 +340,7 @@ platform :ios do
       app_store_connect_api_key(
         key_id: options[:appstore_key_id] || ios_config[:key_id],
         issuer_id: options[:appstore_issuer_id] || ios_config[:issuer_id],
-        key_filepath: options[:key_filepath] || ios_config[:key_filepath],
-        duration: 1200
+        key_filepath: options[:key_filepath] || ios_config[:key_filepath]
       )
   end
 
@@ -479,8 +478,6 @@ platform :ios do
 
       setup_ci_if_needed
 
-      load_api_key(options)
-
       fetch_certificates_with_match(
         options.merge(
             match_type: "appstore"
@@ -492,6 +489,8 @@ platform :ios do
             provisioning_profile_name: "match AppStore org.mifos.kmp.template"
         )
       )
+
+      load_api_key(options)
 
       deliver(
         metadata_path: "./fastlane/metadata",
