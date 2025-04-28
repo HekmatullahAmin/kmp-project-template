@@ -494,7 +494,7 @@ platform :ios do
       load_api_key(options)
 
       deliver(
-        metadata_path: "./fastlane/metadata",
+        metadata_path: options[:metadata_path] || "./fastlane/metadata",
         automatic_release: false,
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
         skip_app_version_update: true,
