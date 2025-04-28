@@ -9,7 +9,7 @@ module FastlaneConfig
     BUILD_CONFIG = {
       project_path: "cmp-ios/iosApp.xcodeproj",
       scheme: "iosApp",
-      output_name: "iosApp.ipa",
+      output_name: "KmpProjectTemplate.ipa",
       output_directory: "cmp-ios/build",
       match_git_private_key: "./secrets/match_ci_key",
       match_type: "adhoc",

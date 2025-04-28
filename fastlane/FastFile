@@ -483,6 +483,11 @@ platform :ios do
         options.merge(match_type: "appstore")
       )
 
+      increment_version_number(
+        xcodeproj: ios_config[:project_path],
+        version_number: "1.0.0"
+      )
+
       latest_build_number = latest_testflight_build_number(
         app_identifier: options[:app_identifier] || ios_config[:app_identifier],
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
