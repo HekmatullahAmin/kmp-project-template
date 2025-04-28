@@ -483,6 +483,8 @@ platform :ios do
         options.merge(match_type: "appstore")
       )
 
+      increment_build_number # automatically increment by one
+
       build_ios_project(
         options.merge(
             provisioning_profile_name: "match AppStore org.mifos.kmp.template"
