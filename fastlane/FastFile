@@ -480,9 +480,7 @@ platform :ios do
       setup_ci_if_needed
 
       fetch_certificates_with_match(
-        options.merge(
-            match_type: "appstore"
-        )
+        options.merge(match_type: "appstore")
       )
 
       build_ios_project(
