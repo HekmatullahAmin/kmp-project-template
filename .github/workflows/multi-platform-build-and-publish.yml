@@ -96,7 +96,7 @@ concurrency:
 jobs:
   multi_platform_build_and_publish:
     name: Multi-Platform Build and Publish
-    uses: openMF/mifos-x-actionhub/.github/workflows/multi-platform-build-and-publish.yaml@v1.0.0
+    uses: HekmatullahAmin/mifos-x-actionhub/.github/workflows/multi-platform-build-and-publish.yaml@test-appstore
     with:
       release_type: ${{ inputs.release_type }}
       target_branch: ${{ inputs.target_branch }}
@@ -111,6 +111,7 @@ jobs:
       match_type: 'adhoc'
       provisioning_profile_name: 'match AdHoc org.mifos.kmp.template'
       firebase_app_id: '1:728434912738:ios:1d81f8e53ca7a6f31a1dbb'
+      metadata_path: './fastlane/metadata'
       distribute_ios_firebase: ${{ inputs.distribute_ios_firebase }}
       distribute_ios_testflight: ${{ inputs.distribute_ios_testflight }}
     secrets:
