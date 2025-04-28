@@ -340,7 +340,8 @@ platform :ios do
       app_store_connect_api_key(
         key_id: options[:appstore_key_id] || ios_config[:key_id],
         issuer_id: options[:appstore_issuer_id] || ios_config[:issuer_id],
-        key_filepath: options[:key_filepath] || ios_config[:key_filepath]
+        key_filepath: options[:key_filepath] || ios_config[:key_filepath],
+        duration: 1200
       )
   end
 
