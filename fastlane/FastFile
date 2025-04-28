@@ -478,20 +478,26 @@ platform :ios do
      ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
       setup_ci_if_needed
-
+      load_api_key(options)
       fetch_certificates_with_match(
         options.merge(match_type: "appstore")
       )
 
-      increment_build_number # automatically increment by one
+      latest_build_number = latest_testflight_build_number(
+        app_identifier: options[:app_identifier] || ios_config[:app_identifier],
+        api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+      )
+
+      increment_build_number(
+        xcodeproj: ios_config[:project_path],
+        build_number: latest_build_number + 1
+      )
 
       build_ios_project(
         options.merge(
             provisioning_profile_name: "match AppStore org.mifos.kmp.template"
         )
       )
-
-      load_api_key(options)
 
       deliver(
         metadata_path: options[:metadata_path] || "./fastlane/metadata",
