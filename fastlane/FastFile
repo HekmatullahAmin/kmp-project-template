@@ -517,6 +517,7 @@ platform :ios do
         skip_app_version_update: true,
         force: true, # Skips HTML report verification
         precheck_include_in_app_purchases: false,
+        app_rating_config_path: "./fastlane/age_rating.json",
         submission_information: {
           add_id_info_uses_idfa: false,
           add_id_info_limits_tracking: false,
