@@ -511,12 +511,15 @@ platform :ios do
 
       deliver(
         metadata_path: options[:metadata_path] || "./fastlane/metadata",
-        submit_for_review: false, # Set to true if you want to auto-submit for review
-        automatic_release: false, # Set to true if you want to auto-release once it approved
+        submit_for_review: true, # Set to true if you want to auto-submit for review
+        automatic_release: true, # Set to true if you want to auto-release once it approved
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
         skip_app_version_update: true,
         force: true, # Skips HTML report verification
-        precheck_include_in_app_purchases: false
+        precheck_include_in_app_purchases: false,
+        submission_information: {
+          export_compliance_uses_encryption: false
+        }
       )
   end
 end
