@@ -509,13 +509,6 @@ platform :ios do
         )
       )
 
-      upload_app_privacy_details_to_app_store(
-        username: "hekmatullah.amin@icloud.com",
-        team_name: "The Mifos Initiative",
-        app_identifier: "org.mifos.kmp.template",
-        json_path: "./fastlane/app_privacy_details.json"
-      )
-
       deliver(
         metadata_path: options[:metadata_path] || "./fastlane/metadata",
         submit_for_review: true, # Set to true if you want to auto-submit for review
@@ -533,7 +526,6 @@ platform :ios do
           add_id_info_tracks_install: false,
           content_rights_has_rights: true,
           content_rights_contains_third_party_content: false,
-          violence_cartoon_or_fantasy: false,
           export_compliance_platform: 'ios',
           export_compliance_compliance_required: false,
           export_compliance_encryption_updated: false,
