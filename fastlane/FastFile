@@ -500,7 +500,8 @@ platform :ios do
 
       increment_build_number(
         xcodeproj: ios_config[:project_path],
-        build_number: latest_build_number + 1
+#         build_number: latest_build_number + 1
+        build_number: 40
       )
 
       update_plist(
