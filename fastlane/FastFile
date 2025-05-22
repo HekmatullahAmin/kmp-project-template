@@ -503,6 +503,15 @@ platform :ios do
         build_number: latest_build_number + 1
       )
 
+      update_plist(
+        plist_path: ios_config[:plist_path],
+        block: proc do |plist|
+          plist['NSContactsUsageDescription'] = 'This app requires access to your contacts to enable autofill and collaboration features.'
+          plist['NSLocationWhenInUseUsageDescription'] = 'This app does not use your location to suggest services near you.'
+          plist['NSBluetoothAlwaysUsageDescription'] = 'This app does not use Bluetooth to communicate with nearby devices.'
+        end
+      )
+
       build_ios_project(
         options.merge(
             provisioning_profile_name: "match AppStore org.mifos.kmp.template"
@@ -517,6 +526,7 @@ platform :ios do
         skip_app_version_update: true,
         force: true, # Skips HTML report verification
         precheck_include_in_app_purchases: false,
+        overwrite_screenshots: true,
         app_rating_config_path: ios_config[:app_rating_config_path],
         submission_information: {
           add_id_info_uses_idfa: false,
