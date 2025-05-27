@@ -343,6 +343,8 @@ platform :ios do
         key_filepath: options[:key_filepath] || ios_config[:key_filepath],
         duration: 1200
       )
+      # ✅ Retrieve the key object from context
+        Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY] = key
 
           # 🔍 Print debug info
           UI.header("🔐 Loaded App Store Connect API Key Before match")
