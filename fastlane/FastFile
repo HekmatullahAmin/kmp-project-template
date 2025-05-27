@@ -353,7 +353,9 @@ platform :ios do
         readonly: true,
         git_url: options[:git_url] || ios_config[:git_url],
         git_branch: options[:git_branch] || ios_config[:git_branch],
-        git_private_key: options[:git_private_key] || ios_config[:match_git_private_key]
+        git_private_key: options[:git_private_key] || ios_config[:match_git_private_key],
+        force_for_new_devices: true,
+        api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
       )
   end
 
@@ -383,6 +385,7 @@ platform :ios do
   desc "Build Ios application"
   lane :build_ios do |options|
       setup_ci_if_needed
+      load_api_key(options)
       fetch_certificates_with_match(options)
       build_ios_project(options)
   end
