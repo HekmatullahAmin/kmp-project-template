@@ -337,12 +337,24 @@ platform :ios do
   private_lane :load_api_key do |options|
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
+        # 🔍 Print debug info (mask key to avoid leaking secrets in logs)
+        UI.header("🔐 Loaded App Store Connect API Key Before match")
+        UI.message("➡️  Key ID: #{key[:key_id]}")
+        UI.message("➡️  Issuer ID: #{key[:issuer_id]}")
+        UI.message("➡️  Key: #{key[:key][0..30]}... [truncated]") # Masked for safety
+
       key = app_store_connect_api_key(
         key_id: options[:appstore_key_id] || ios_config[:key_id],
         issuer_id: options[:appstore_issuer_id] || ios_config[:issuer_id],
         key_filepath: options[:key_filepath] || ios_config[:key_filepath],
         duration: 1200
       )
+
+        # 🔍 Print debug info (mask key to avoid leaking secrets in logs)
+        UI.header("🔐 Loaded App Store Connect API Key after match")
+        UI.message("➡️  Key ID: #{key[:key_id]}")
+        UI.message("➡️  Issuer ID: #{key[:issuer_id]}")
+        UI.message("➡️  Key: #{key[:key][0..30]}... [truncated]") # Masked for safety
 
       Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY] = key
   end
