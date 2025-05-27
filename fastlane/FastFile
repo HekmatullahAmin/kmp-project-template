@@ -338,9 +338,11 @@ platform :ios do
       ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
 
       UI.header("🧪 Fastlane Debug")
+      UI.message("➡️  options[:app_identifier]: #{options[:app_identifier]}")
       UI.message("➡️  options[:appstore_key_id]: #{options[:appstore_key_id]}")
       UI.message("➡️  options[:appstore_issuer_id]: #{options[:appstore_issuer_id]}")
       UI.message("➡️  options[:key_filepath]: #{options[:key_filepath]}")
+
 
       app_store_connect_api_key(
         key_id: options[:appstore_key_id] || ios_config[:key_id],
