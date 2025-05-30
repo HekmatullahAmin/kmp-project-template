@@ -388,7 +388,8 @@ platform :ios do
         scheme: ios_config[:scheme],
         project: ios_config[:project_path],
         output_name: ios_config[:output_name],
-        output_directory: ios_config[:output_directory]
+        output_directory: ios_config[:output_directory],
+        xcargs: "-allowProvisioningUpdates"
       )
   end
 
