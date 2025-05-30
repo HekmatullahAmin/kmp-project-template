@@ -38,7 +38,7 @@ jobs:
         uses: maxim-lobanov/setup-stable
 
       - name: Checkout Repository
-        user: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Build singed iOS App
         uses: HekmatullahAmin/mifos-x-actionhub-build-ios-app@enhance-ios-build-action
