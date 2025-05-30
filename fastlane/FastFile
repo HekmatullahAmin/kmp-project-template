@@ -383,6 +383,7 @@ platform :ios do
 
   desc "Build Ios application"
   lane :build_ios do |options|
+      ios_config = FastlaneConfig::IosConfig::BUILD_CONFIG
       build_ios_app(
         scheme: ios_config[:scheme],
         project: ios_config[:project_path],
