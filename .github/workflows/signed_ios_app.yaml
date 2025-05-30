@@ -45,7 +45,7 @@ jobs:
       - name: Build singed iOS App
         uses: HekmatullahAmin/mifos-x-actionhub-build-ios-app@enhance-ios-build-action
         with:
-          build_type: 'Release'
+          build_type: ${{ inputs.build_type }}
           app_identifier: 'org.mifos.kmp.template'
           git_url: 'git@github.com:openMF/ios-provisioning-profile.git'
           git_branch: 'master'
