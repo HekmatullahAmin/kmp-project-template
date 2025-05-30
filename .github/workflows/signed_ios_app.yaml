@@ -13,7 +13,7 @@ on:
 jobs:
   build_debug_ios_app:
     - name: Build iOS App
-      if: ${{ inputs.build_type }} == 'Debug'
+      if: ${{ inputs.build_type == 'Debug' }}
       runs-on: macos-latest
 
       steps:
@@ -30,7 +30,7 @@ jobs:
 
   build_signed_ios_app:
     - name: Build signed iOS app
-      if: ${{ inputs.build_type }} == 'Release'
+      if: ${{ inputs.build_type == 'Release' }}
       runs-on: macos-latest
 
       steps:
