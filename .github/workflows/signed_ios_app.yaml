@@ -27,6 +27,8 @@ jobs:
 
       - name: Build iOS App
         uses: HekmatullahAmin/mifos-x-actionhub-build-ios-app@enhance-ios-build-action
+        with:
+          is_not_act: false
 
   build_signed_ios_app:
     name: Build signed iOS app

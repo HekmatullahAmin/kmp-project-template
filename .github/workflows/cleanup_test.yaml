@@ -1,0 +1,32 @@
+name: Cleanup test
+on:
+  workflow_dispatch:
+    secrets:
+      token:
+        required: true
+        description: 'GitHub token for API access'
+
+jobs:
+
+  cleanup_test:
+    name: Cleanup All Caches
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install GitHub CLI (latest)
+        run: |
+          type -p curl >/dev/null || (apt-get update && apt-get install -y curl)
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          apt-get update
+          apt-get install gh -y
+          gh --version
+
+      - name: Cleanup All Caches
+        run: |
+          echo "Cleaning all repository caches..."
+          gh cache delete --all -R $REPO || echo "No caches to delete, continuing"
+          echo "All caches cleaned up"
+        env:
+          REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.token }}

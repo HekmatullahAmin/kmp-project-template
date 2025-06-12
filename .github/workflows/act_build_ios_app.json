@@ -1,0 +1,6 @@
+{
+  "event_name": "workflow_dispatch",
+  "inputs": {
+    "build_type": "Debug"
+  }
+}
