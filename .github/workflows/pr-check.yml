@@ -91,5 +91,5 @@ jobs:
       build_ios: true # <-- Change to 'false' if you don't want to build iOS
       use_cocoapods: true
       shared_module: ':cmp-shared'
-      ios_working_directory: 'cmp-ios'
+#      ios_working_directory: 'cmp-ios'
 #      ios_working_directory: 'cmp-ios/iosApp'
