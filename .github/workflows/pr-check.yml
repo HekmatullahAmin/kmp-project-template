@@ -62,7 +62,6 @@
 # ##############################################################################
 
 
-name: PR Checks
 
 # Trigger conditions for the workflow
 on:
@@ -81,27 +80,15 @@ permissions:
   contents: write
 
 jobs:
-  build_ios_app:
-    name: Build iOS App
-    runs-on: macos-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup latest Xcode version
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
-
-      - name: Generate dummy framework for KMP
-        run: ./gradlew :cmp-shared:generateDummyFramework
-
-      - name: Install CocoaPods dependencies
-        working-directory: cmp-ios/iosApp
-        run: pod install
-
-      - name: Build iOS App
-        uses: openMF/mifos-x-actionhub-build-ios-app@v1.0.2
+  pr_checks:
+    name: PR Checks
+    uses: HekmatullahAmin/mifos-x-actionhub/.github/workflows/pr-check.yaml@cocoapods-test
+    with:
+      android_package_name: 'cmp-android' # <-- Change Your Android Package Name
+      desktop_package_name: 'cmp-desktop' # <-- Change Your Desktop Package Name
+      web_package_name: 'cmp-web' # <-- Change Your Web Package Name
+      ios_package_name: 'cmp-ios' # <-- Change Your iOS Package Name
+      build_ios: true # <-- Change to 'false' if you don't want to build iOS
+      use_cocoapods: true
+      shared_module: ':cmp-shared'
+      ios_working_directory: 'cmp-ios/iosApp'
